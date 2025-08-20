@@ -1,12 +1,14 @@
 from fastapi import FastAPI
 import requests
+import os
 
 app=FastAPI()
-key="c9059c351155aa00b95d111438dcaa39"
+key=os.getenv("OPENWEATHER_API_KEY")
+
 
 @app.get('/weather')
-def weather():
-    city='pune'
+def weather(city):
+    
     cord_url=f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=5&appid={key}"
     cord_data=requests.get(cord_url).json()
     lat=cord_data[0]['lat']
