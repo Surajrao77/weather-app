@@ -6,7 +6,7 @@ app=FastAPI()
 key=os.getenv("OPENWEATHER_API_KEY")
 
 
-@app.get('/weather')
+@app.get('/weather/{city}')
 def weather(city):
     
     cord_url=f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=5&appid={key}"
