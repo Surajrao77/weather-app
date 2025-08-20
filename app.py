@@ -1,9 +1,18 @@
 from fastapi import FastAPI
 import requests
 import os
+from fastapi.middleware.cors import CORSMiddleware
 
 app=FastAPI()
 key=os.getenv("OPENWEATHER_API_KEY")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # allow all (you can restrict later)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get('/weather/{city}')
